@@ -1,0 +1,4 @@
+database/*
+/cities/*/reads/*
+/cities/*/smk_output/*
+

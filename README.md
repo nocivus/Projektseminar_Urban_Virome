@@ -40,6 +40,12 @@ Example: .../src/database/k2_viral_20260226
 Sample readings from the Global Urban Virome study are available at the [European Nucleotide Archive.](https://www.ebi.ac.uk/ena/browser/view/PRJEB87273)    
 Both paired reads of a sample (..._1.fastq.gz & ..._2.fastq.gz) must be stored inside ./reads/
 
+## config.yaml
+
+set Classification Level:
+
+`classification_level: F`
+
 ## Run
 
 The snakemake file has to be run out of {src}
@@ -51,3 +57,8 @@ To generate the assambled matrix for the reads of Ecuador run:
 Test run:
 
 `snakemake -n cities/Ecuador/smk_output/merged_reads.csv`
+
+## Example CSV
+
+<img width="1950" height="1170" alt="Bildschirmfoto 2026-04-29 um 14 43 08" src="https://github.com/user-attachments/assets/e4255e73-36d7-4fd1-b4d6-15b49b80fa7a" />
+

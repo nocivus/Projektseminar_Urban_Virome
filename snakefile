@@ -10,8 +10,8 @@ rule kraken_classification:
 		read1="cities/{city}/reads/{sample}_1.fastq.gz",
 		read2="cities/{city}/reads/{sample}_2.fastq.gz"
 	output:
-		"cities/{city}/smk_output/kraken/{sample}.output",
-		"cities/{city}/smk_output/kraken/{sample}.report"
+		temp("cities/{city}/smk_output/kraken/{sample}.output"),
+		temp("cities/{city}/smk_output/kraken/{sample}.report")
 	shell:
 		"kraken2 --db {input.db} --threads 8 --output cities/{wildcards.city}/smk_output/kraken/{wildcards.sample}.output --report cities/{wildcards.city}/smk_output/kraken/{wildcards.sample}.report --paired {input.read1} {input.read2}"
 		
@@ -20,16 +20,20 @@ rule bracken_report:
 		db="database/k2_viral_20260226", 
 		kreport="cities/{city}/smk_output/kraken/{sample}.report"
 	output:
-		"cities/{city}/smk_output/bracken/{sample}.bracken",
-		"cities/{city}/smk_output/bracken/{sample}.breport"
+		brck="cities/{city}/smk_output/bracken/{sample}.bracken",
+		brep="cities/{city}/smk_output/bracken/{sample}.breport"
+	params:
+		level=config["classification_level"]
 	shell:
-		"bracken -d {input.db} -i {input.kreport} -r 100 -l G -t 10 -o cities/{wildcards.city}/smk_output/bracken/{wildcards.sample}.bracken -w  cities/{wildcards.city}/smk_output/bracken/{wildcards.sample}.breport"
+		"bracken -d {input.db} -i {input.kreport} -r 100 -l {params.level} -t 10 -o {output.brck} -w {output.brep}"
 		
 rule to_csv:
 	input:
 		"cities/{city}/smk_output/bracken/{sample}.breport"
 	output:
-		"cities/{city}/smk_output/{sample}.csv"
+		temp("cities/{city}/smk_output/{sample}.csv")
+	params:
+		level=config["classification_level"]
 	script:
 		"scripts/to_csv.py"
 		

@@ -2,4 +2,5 @@ database/*
 /cities/*/reads/*.gz
 /cities/*/smk_output/*
 .DS_Store
-.idea
+.idea/
+.snakemake/

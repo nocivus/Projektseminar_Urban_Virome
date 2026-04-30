@@ -6,7 +6,7 @@
 
 for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/main)
 
-### 2. Kraken2, Bracken, Krakentools
+### 2. Snakemake, Kraken2, Bracken
 
 `conda install -c conda-forge -c bioconda snakemake`
 
@@ -18,10 +18,10 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 
 ## Required folder structure:
 
-> .../\{src\}/  
+> .../\{src\}/    
 >    |── cities/        
->    |──── Ecuador/
->    |──────── reads/
+>    |──── Ecuador/     
+>    |──────── reads/    
 >    |── database/           
 >    |── scripts/        
 
@@ -33,12 +33,12 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 ## Data preparation
 ### k-mer Database
 Pre-built Kraken2 and Bracken databases can be found [here.](https://benlangmead.github.io/aws-indexes/k2)   
-The Database has to be unzipped and stored in an extra directory inside ./database/   
+The Database has to be unzipped and stored in an extra directory inside database/   
 Example: .../src/database/k2_viral_20260226
 
 ### Input
 Sample readings from the Global Urban Virome study are available at the [European Nucleotide Archive.](https://www.ebi.ac.uk/ena/browser/view/PRJEB87273)    
-Both paired reads of a sample (..._1.fastq.gz & ..._2.fastq.gz) must be stored inside ./reads/
+Both paired reads of a sample (..._1.fastq.gz & ..._2.fastq.gz) must be stored inside reads/
 
 ## config.yaml
 

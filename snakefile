@@ -1,4 +1,12 @@
+from snakemake.utils import min_version
+min_version("6.0")
+
 configfile: "config.yaml"
+
+module weather_workflow:
+	snakefile: "smk/weather.smk"
+
+use rule * from weather_workflow as weather_*
 
 rule all:
 	input:
@@ -12,8 +20,9 @@ rule kraken_classification:
 	output:
 		temp("cities/{city}/smk_output/kraken/{sample}.output"),
 		temp("cities/{city}/smk_output/kraken/{sample}.report")
+	threads: 8
 	shell:
-		"kraken2 --db {input.db} --threads 8 --output cities/{wildcards.city}/smk_output/kraken/{wildcards.sample}.output --report cities/{wildcards.city}/smk_output/kraken/{wildcards.sample}.report --paired {input.read1} {input.read2}"
+		"kraken2 --db {input.db} --threads {threads} --output cities/{wildcards.city}/smk_output/kraken/{wildcards.sample}.output --report cities/{wildcards.city}/smk_output/kraken/{wildcards.sample}.report --paired {input.read1} {input.read2}"
 		
 rule bracken_report:
 	input:
@@ -24,6 +33,7 @@ rule bracken_report:
 		brep="cities/{city}/smk_output/bracken/{sample}.breport"
 	params:
 		level=config["classification_level"]
+	threads: 1
 	shell:
 		"bracken -d {input.db} -i {input.kreport} -r 100 -l {params.level} -t 10 -o {output.brck} -w {output.brep}"
 		
@@ -34,6 +44,7 @@ rule to_csv:
 		temp("cities/{city}/smk_output/{sample}.csv")
 	params:
 		level=config["classification_level"]
+	threads: 1
 	script:
 		"scripts/to_csv.py"
 		
@@ -41,6 +52,7 @@ rule merge_csv:
 	input:
 		csv=expand("cities/{{city}}/smk_output/{sample}.csv", city=config["Cities"], sample=lambda wildcards: config[wildcards.city]["samples"])
 	output:
-		"cities/{city}/smk_output/merged_reads.csv"
+		"cities/{city}/smk_output/{city}_merged_reads.csv"
+	threads: 1
 	script:
 		"scripts/merge_csv.py"

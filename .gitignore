@@ -4,3 +4,4 @@ database/*
 .DS_Store
 .idea/
 .snakemake/
+report.txt

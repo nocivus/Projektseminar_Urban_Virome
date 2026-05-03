@@ -10,7 +10,7 @@ use rule * from weather_workflow as weather_*
 
 rule all:
 	input:
-		"cities/{city}/smk_output/merged_reads.csv"
+		"report.txt"
 
 rule kraken_classification:
 	input:
@@ -56,3 +56,14 @@ rule merge_csv:
 	threads: 1
 	script:
 		"scripts/merge_csv.py"
+
+rule create_all:
+	input:
+		weather=expand("cities/{city}/smk_output/{city}_weather.csv", city=config["Cities"]),
+		list=expand("cities/{city}/smk_output/{city}_merged_reads.csv", city=config["Cities"])
+	output:
+		"report.txt"
+	threads: 1
+	shell:
+		"echo {input.weather} > {output}"
+		"echo {input.list} >> {output}"

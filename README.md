@@ -52,11 +52,11 @@ The snakemake file has to be run out of {src}
 
 To generate the assambled matrix for the reads of Ecuador run:
 
-`snakemake --cores 8 cities/Ecuador/smk_output/merged_reads.csv`
+`snakemake --cores 8 cities/Quito/smk_output/Quito_merged_reads.csv`
 
 Test run:
 
-`snakemake -n cities/Ecuador/smk_output/merged_reads.csv`
+`snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv`
 
 ## Example CSV
 

@@ -20,9 +20,10 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 
 > .../\{src\}/    
 >    |── cities/        
->    |──── Ecuador/     
+>    |──── Yaounde/     
 >    |──────── reads/    
->    |── database/           
+>    |── database/
+>    |── smk/         
 >    |── scripts/        
 
 **.../\{src\}/database** contains the (pre-built) Kraken 2 & Bracken databases.   
@@ -44,7 +45,7 @@ Both paired reads of a sample (..._1.fastq.gz & ..._2.fastq.gz) must be stored i
 
 set Classification Level:
 
-`classification_level: F`
+`classification_level: G`
 
 ## Run
 
@@ -58,7 +59,8 @@ Test run:
 
 `snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv`
 
-## Example CSV
+## Example CSVs
 
 <img width="1950" height="1170" alt="Bildschirmfoto 2026-04-29 um 14 43 08" src="https://github.com/user-attachments/assets/e4255e73-36d7-4fd1-b4d6-15b49b80fa7a" />
 
+<img width="857" height="578" alt="grafik" src="https://github.com/user-attachments/assets/50135a60-3441-4058-9541-5593a15c9fe7" />

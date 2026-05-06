@@ -22,7 +22,7 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 >    |── cities/        
 >    |──── Yaounde/     
 >    |──────── reads/    
->    |── database/
+>    |── database/    
 >    |── smk/         
 >    |── scripts/        
 
@@ -51,13 +51,13 @@ set Classification Level:
 
 The snakemake file has to be run out of {project path}
 
-To generate the assambled matrix for the reads of Yaounde(Ecuador) run:
+To generate the assambled matrix for the reads of Ecuador run:
 
-`snakemake --cores 8 cities/Yaounde/smk_output/Yaounde_merged_reads.csv`
+`snakemake --cores 8 cities/Quito/smk_output/Quito_merged_reads.csv`
 
 Test run:
 
-`snakemake -n cities/Yaounde/smk_output/Yaounde_merged_reads.csv`
+`snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv`
 
 ## Example CSVs
 

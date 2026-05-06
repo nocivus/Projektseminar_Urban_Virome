@@ -65,5 +65,7 @@ rule create_all:
 		"report.txt"
 	threads: 1
 	shell:
-		"echo {input.weather} > {output}"
-		"echo {input.list} >> {output}"
+		"""
+		echo {input.weather} > {output}
+		echo {input.list} >> {output}
+		"""

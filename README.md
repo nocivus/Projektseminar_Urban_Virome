@@ -22,7 +22,7 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 >    |── cities/        
 >    |──── Yaounde/     
 >    |──────── reads/    
->    |── database/
+>    |── database/    
 >    |── smk/         
 >    |── scripts/        
 

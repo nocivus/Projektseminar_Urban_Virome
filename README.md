@@ -18,7 +18,7 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 
 ## Required folder structure:
 
-> .../\{src\}/    
+> .../\{project path\}/    
 >    |── cities/        
 >    |──── Yaounde/     
 >    |──────── reads/    
@@ -26,16 +26,16 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 >    |── smk/         
 >    |── scripts/        
 
-**.../\{src\}/database** contains the (pre-built) Kraken 2 & Bracken databases.   
-**.../\{src\}/cities/.../reads** contains the paired readings of the samples (..._1.fastq.gz & ..._2.fastq.gz)   
-**.../\{src\}/scripts** contains merge_csv-py & to_csv.py   
+**.../\{project path\}/database** contains the (pre-built) Kraken 2 & Bracken databases.   
+**.../\{project path\}/cities/.../reads** contains the paired readings of the samples (..._1.fastq.gz & ..._2.fastq.gz)   
+**.../\{project path\}/scripts** contains merge_csv-py & to_csv.py   
 
 
 ## Data preparation
 ### k-mer Database
 Pre-built Kraken2 and Bracken databases can be found [here.](https://benlangmead.github.io/aws-indexes/k2)   
 The Database has to be unzipped and stored in an extra directory inside database/   
-Example: .../src/database/k2_viral_20260226
+Example: .../project path/database/k2_viral_20260226
 
 ### Input
 Sample readings from the Global Urban Virome study are available at the [European Nucleotide Archive.](https://www.ebi.ac.uk/ena/browser/view/PRJEB87273)    
@@ -49,7 +49,7 @@ set Classification Level:
 
 ## Run
 
-The snakemake file has to be run out of {src}
+The snakemake file has to be run out of {project path}
 
 To generate the assambled matrix for the reads of Yaounde(Ecuador) run:
 

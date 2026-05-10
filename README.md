@@ -1,6 +1,52 @@
 # Projektseminar_Urban_Virome
 
-### Installing required software:
+## Docker 
+
+### 1. Build the Docker Image
+
+```bash
+docker build -t data-preparation-kraken-db .
+```
+
+---
+
+### 2. Start the Container
+
+```bash
+docker run -it --name kraken-db data-preparation-kraken-db /bin/bash
+```
+
+---
+
+### 3. Copy Data from the Container to the Local Repository (example)
+
+Run the following command outside the container:
+
+```bash
+docker cp kraken-db:/data/cities/Quito/smk_output ./smk_output
+```
+
+This copies the complete content from:
+
+```text
+/data/cities/Quito/smk_output
+```
+
+into the local directory:
+
+```text
+./smk_output
+```
+
+---
+
+### 4. Optional: Remove the Container
+
+```bash
+docker rm kraken-db
+```
+
+## Manual Installation:
 
 ### 1. Conda Package Manager
 

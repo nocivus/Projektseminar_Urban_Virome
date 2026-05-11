@@ -1,6 +1,8 @@
 services:
   data-preparation:
     image: data-preparation:latest
+    build: .
+    command: snakemake --cores 10 report.txt
     volumes:
       - type: bind
         source: ./database

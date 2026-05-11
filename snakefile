@@ -8,6 +8,9 @@ module weather_workflow:
 
 use rule * from weather_workflow as weather_*
 
+CITY,SAMPLE = glob_wildcards("cities/{city}/reads/{sample}_1.fastq.gz")
+CITY_SAMPLES = {city: [sample for c, sample in zip(CITY, SAMPLE) if c == city] for city in set(CITY)}
+
 rule all:
 	input:
 		"report.txt"
@@ -50,7 +53,7 @@ rule to_csv:
 		
 rule merge_csv:
 	input:
-		csv=expand("cities/{{city}}/smk_output/sample_csv/{sample}.csv", city=config["Cities"], sample=lambda wildcards: config[wildcards.city]["samples"])
+		csv=expand("cities/{{city}}/smk_output/sample_csv/{sample}.csv", city=CITY, sample=lambda wildcards: CITY_SAMPLES[wildcards.city])
 	output:
 		"cities/{city}/smk_output/{city}_merged_reads.csv"
 	threads: 1
@@ -59,8 +62,8 @@ rule merge_csv:
 
 rule create_all:
 	input:
-		weather=expand("cities/{city}/smk_output/{city}_weather.csv", city=config["Cities"]),
-		list=expand("cities/{city}/smk_output/{city}_merged_reads.csv", city=config["Cities"])
+		weather=expand("cities/{city}/smk_output/{city}_weather.csv", city=CITY),
+		list=expand("cities/{city}/smk_output/{city}_merged_reads.csv", city=CITY)
 	output:
 		"report.txt"
 	threads: 1

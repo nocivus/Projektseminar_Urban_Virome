@@ -6,20 +6,22 @@ __CSV files with classification matrix and weather data for all 8 cities are ava
 
 ## Docker 
 
+### Build via Docker-Compose
+
+Compose reads docker-compose.yaml, builds & starts the container and binds `database/` (read only) & `cities/` (read/write) to the container.    
+The generated files are written to `cities/{city}/smk_output/`
+
+```bash
+docker compose up
+```
+---
+
+### Alternative Build
+
 ### 1. Build the Docker Image
 
 ```bash
 docker build -t data-preparation .
-```
-
----
-
-### 1.1 Docker-Compose (not yet working!)
-
-Mounting the external directories is working, but the container is not running. Needs to be fixed.
-
-```bash
-docker compose up
 ```
 
 ### 2. Start the Container with mounted directories
@@ -30,29 +32,7 @@ docker run -it --mount type=bind,src=./database,dst=/snakemake/database,ro --mou
 
 ---
 
-### 3. Copy Data from the Container to the Local Repository (example)
-
-Run the following command outside the container:
-
-```bash
-docker cp data:/cities/Quito/smk_output ./smk_output
-```
-
-This copies the complete content from:
-
-```text
-/cities/Quito/smk_output
-```
-
-into the local directory:
-
-```text
-./smk_output
-```
-
----
-
-### 4. Optional: Remove the Container
+### 3. Optional: Remove the Container
 
 ```bash
 docker rm data
@@ -117,22 +97,22 @@ The snakemake file has to be run out of {project path}
 To generate the assembled matrix for the reads of Ecuador run:
 
 ```bash
-snakemake --cores 8 cities/Quito/smk_output/Quito_merged_reads.csv`
+snakemake --cores 8 cities/Quito/smk_output/Quito_merged_reads.csv
 ```
 
 Test run:
 
 ```bash
-snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv`
+snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv
 ```
 
-To run the pipeline for all cities listed in config.yaml at once, run:    
+To run the pipeline for all cities run:    
 
 ```bash
-snakemake --cores 8 report.txt`   
-``
+snakemake --cores 8 report.txt
+```
 
-(all read-files listed in config.yaml have to be present in the designated city directories for the pipeline to run)
+(all read-files present in the designated city directories are automatically added to the pipeline)
 
 ## Example CSVs
 

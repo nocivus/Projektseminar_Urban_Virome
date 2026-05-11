@@ -1,4 +1,6 @@
 FROM continuumio/miniconda3:latest
+# continuumio base image is deprecated, official successor is:
+# anaconda/miniconda:latest
 
 # Set working directory
 WORKDIR /data

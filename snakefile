@@ -29,8 +29,8 @@ rule bracken_report:
 		db="database/k2_viral_20260226", 
 		kreport="cities/{city}/smk_output/kraken/{sample}.report"
 	output:
-		brck="cities/{city}/smk_output/bracken/{sample}.bracken",
-		brep="cities/{city}/smk_output/bracken/{sample}.breport"
+		brck=temp("cities/{city}/smk_output/bracken/{sample}.bracken"),
+		brep=temp("cities/{city}/smk_output/bracken/{sample}.breport")
 	params:
 		level=config["classification_level"]
 	threads: 1
@@ -41,7 +41,7 @@ rule to_csv:
 	input:
 		"cities/{city}/smk_output/bracken/{sample}.breport"
 	output:
-		temp("cities/{city}/smk_output/{sample}.csv")
+		"cities/{city}/smk_output/sample_csv/{sample}.csv"
 	params:
 		level=config["classification_level"]
 	threads: 1

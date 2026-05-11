@@ -1,5 +1,9 @@
 # Projektseminar_Urban_Virome
 
+## Generated test CSV-files
+
+__CSV files with classification matrix and weather data for all 8 cities are available in `generated_files/`__
+
 ## Docker 
 
 ### 1. Build the Docker Image
@@ -54,12 +58,17 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 
 ### 2. Snakemake, Kraken2, Bracken
 
-`conda install -c conda-forge -c bioconda snakemake`
+```bash
+conda install -c conda-forge -c bioconda snakemake`
+````
 
-`conda activate snakemake`
+```bash
+conda activate snakemake
+```
 
-`conda install -c conda-forge -c bioconda kraken2 bracken pandas`
-
+```bash
+conda install -c conda-forge -c bioconda kraken2 bracken pandas`
+```
 
 
 ## Required folder structure:
@@ -99,15 +108,21 @@ The snakemake file has to be run out of {project path}
 
 To generate the assembled matrix for the reads of Ecuador run:
 
-`snakemake --cores 8 cities/Quito/smk_output/Quito_merged_reads.csv`
+```bash
+snakemake --cores 8 cities/Quito/smk_output/Quito_merged_reads.csv`
+```
 
 Test run:
 
-`snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv`
+```bash
+snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv`
+```
 
 To run the pipeline for all cities listed in config.yaml at once, run:    
 
-`snakemake --cores 8 report.txt`   
+```bash
+snakemake --cores 8 report.txt`   
+``
 
 (all read-files listed in config.yaml have to be present in the designated city directories for the pipeline to run)
 
@@ -116,4 +131,3 @@ To run the pipeline for all cities listed in config.yaml at once, run:
 <img width="1950" height="1170" alt="Bildschirmfoto 2026-04-29 um 14 43 08" src="https://github.com/user-attachments/assets/e4255e73-36d7-4fd1-b4d6-15b49b80fa7a" />
 
 <img width="857" height="578" alt="grafik" src="https://github.com/user-attachments/assets/50135a60-3441-4058-9541-5593a15c9fe7" />
-

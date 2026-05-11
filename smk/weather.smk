@@ -8,7 +8,7 @@ rule get_weather:
 		longitude=lambda wildcards: config[wildcards.city][1]
 	threads: 1
 	shell:
-		"wget 'https://archive-api.open-meteo.com/v1/archive?latitude={params.latitude}&longitude={params.longitude}&start_date=2017-01-01&end_date=2019-12-31&daily=temperature_2m_mean,temperature_2m_max,temperature_2m_min,rain_sum,relative_humidity_2m_mean&timezone=GMT&format=csv' -O {output}"
+		"wget 'https://archive-api.open-meteo.com/v1/archive?latitude={params.latitude}&longitude={params.longitude}&start_date=2017-01-01&end_date=2018-12-31&daily=temperature_2m_mean,temperature_2m_max,temperature_2m_min,rain_sum,relative_humidity_2m_mean&timezone=GMT&format=csv' -O {output}"
 
 rule to_csv:
 	input:

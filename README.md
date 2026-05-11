@@ -59,7 +59,7 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 ### 2. Snakemake, Kraken2, Bracken
 
 ```bash
-conda install -c conda-forge -c bioconda snakemake`
+conda install -c conda-forge -c bioconda snakemake
 ````
 
 ```bash
@@ -67,7 +67,7 @@ conda activate snakemake
 ```
 
 ```bash
-conda install -c conda-forge -c bioconda kraken2 bracken pandas`
+conda install -c conda-forge -c bioconda kraken2 bracken pandas
 ```
 
 
@@ -109,20 +109,20 @@ The snakemake file has to be run out of {project path}
 To generate the assembled matrix for the reads of Ecuador run:
 
 ```bash
-snakemake --cores 8 cities/Quito/smk_output/Quito_merged_reads.csv`
+snakemake --cores 8 cities/Quito/smk_output/Quito_merged_reads.csv
 ```
 
 Test run:
 
 ```bash
-snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv`
+snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv
 ```
 
 To run the pipeline for all cities listed in config.yaml at once, run:    
 
 ```bash
-snakemake --cores 8 report.txt`   
-``
+snakemake --cores 8 report.txt   
+```
 
 (all read-files listed in config.yaml have to be present in the designated city directories for the pipeline to run)
 

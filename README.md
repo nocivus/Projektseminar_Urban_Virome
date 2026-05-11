@@ -9,15 +9,23 @@ __CSV files with classification matrix and weather data for all 8 cities are ava
 ### 1. Build the Docker Image
 
 ```bash
-docker build -t data-preparation-kraken-db .
+docker build -t data-preparation .
 ```
 
 ---
 
-### 2. Start the Container
+### 1.1 Docker-Compose (not yet working!)
+
+Mounting the external directories is working, but the container is not running. Needs to be fixed.
 
 ```bash
-docker run -it --name kraken-db data-preparation-kraken-db /bin/bash
+docker compose up
+```
+
+### 2. Start the Container with mounted directories
+
+```bash
+docker run -it --mount type=bind,src=./database,dst=/snakemake/database,ro --mount type=bind,src=./cities,dst=/snakemake/cities --name data data-preparation:latest
 ```
 
 ---
@@ -27,13 +35,13 @@ docker run -it --name kraken-db data-preparation-kraken-db /bin/bash
 Run the following command outside the container:
 
 ```bash
-docker cp kraken-db:/data/cities/Quito/smk_output ./smk_output
+docker cp data:/cities/Quito/smk_output ./smk_output
 ```
 
 This copies the complete content from:
 
 ```text
-/data/cities/Quito/smk_output
+/cities/Quito/smk_output
 ```
 
 into the local directory:
@@ -47,7 +55,7 @@ into the local directory:
 ### 4. Optional: Remove the Container
 
 ```bash
-docker rm kraken-db
+docker rm data
 ```
 
 ## Manual Installation:

@@ -1,0 +1,10 @@
+services:
+  data-preparation:
+    image: data-preparation:latest
+    volumes:
+      - type: bind
+        source: ./database
+        target: /snakemake/database
+      - type: bind
+        source: ./cities
+        target: /snakemake/cities

@@ -50,7 +50,7 @@ rule to_csv:
 		
 rule merge_csv:
 	input:
-		csv=expand("cities/{{city}}/smk_output/{sample}.csv", city=config["Cities"], sample=lambda wildcards: config[wildcards.city]["samples"])
+		csv=expand("cities/{{city}}/smk_output/sample_csv/{sample}.csv", city=config["Cities"], sample=lambda wildcards: config[wildcards.city]["samples"])
 	output:
 		"cities/{city}/smk_output/{city}_merged_reads.csv"
 	threads: 1

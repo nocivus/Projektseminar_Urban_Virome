@@ -116,3 +116,5 @@ To run the pipeline for all cities listed in config.yaml at once, run:
 <img width="1950" height="1170" alt="Bildschirmfoto 2026-04-29 um 14 43 08" src="https://github.com/user-attachments/assets/e4255e73-36d7-4fd1-b4d6-15b49b80fa7a" />
 
 <img width="857" height="578" alt="grafik" src="https://github.com/user-attachments/assets/50135a60-3441-4058-9541-5593a15c9fe7" />
+
+[comment]: <> (Webhook Test)

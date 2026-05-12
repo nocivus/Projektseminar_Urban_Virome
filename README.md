@@ -6,48 +6,36 @@ __CSV files with classification matrix and weather data for all 8 cities are ava
 
 ## Docker 
 
+### Build via Docker-Compose
+
+Compose reads docker-compose.yaml, builds & starts the container and binds `database/` (read only) & `cities/` (read/write) to the container.    
+The generated files are written to `cities/{city}/smk_output/`
+
+```bash
+docker compose up
+```
+---
+
+### Alternative Build
+
 ### 1. Build the Docker Image
 
 ```bash
-docker build -t data-preparation-kraken-db .
+docker build -t data-preparation .
+```
+
+### 2. Start the Container with mounted directories
+
+```bash
+docker run -it --mount type=bind,src=./database,dst=/snakemake/database,ro --mount type=bind,src=./cities,dst=/snakemake/cities --name data data-preparation:latest
 ```
 
 ---
 
-### 2. Start the Container
+### 3. Optional: Remove the Container
 
 ```bash
-docker run -it --name kraken-db data-preparation-kraken-db /bin/bash
-```
-
----
-
-### 3. Copy Data from the Container to the Local Repository (example)
-
-Run the following command outside the container:
-
-```bash
-docker cp kraken-db:/data/cities/Quito/smk_output ./smk_output
-```
-
-This copies the complete content from:
-
-```text
-/data/cities/Quito/smk_output
-```
-
-into the local directory:
-
-```text
-./smk_output
-```
-
----
-
-### 4. Optional: Remove the Container
-
-```bash
-docker rm kraken-db
+docker rm data
 ```
 
 ## Manual Installation:
@@ -118,13 +106,13 @@ Test run:
 snakemake -n cities/Quito/smk_output/Quito_merged_reads.csv
 ```
 
-To run the pipeline for all cities listed in config.yaml at once, run:    
+To run the pipeline for all cities run:    
 
 ```bash
-snakemake --cores 8 report.txt   
+snakemake --cores 8 report.txt
 ```
 
-(all read-files listed in config.yaml have to be present in the designated city directories for the pipeline to run)
+(all read-files present in the designated city directories are automatically added to the pipeline)
 
 ## Example CSVs
 

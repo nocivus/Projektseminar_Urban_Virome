@@ -9,4 +9,4 @@ services:
         target: /snakemake/database
       - type: bind
         source: ./cities
-        target: /snakemake/cities
+        target: /snakemake/citiesw

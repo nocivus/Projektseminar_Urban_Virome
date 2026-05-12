@@ -47,7 +47,7 @@ for install using Miniconda see: (https://www.anaconda.com/docs/getting-started/
 ### 2. Snakemake, Kraken2, Bracken
 
 ```bash
-conda install -c conda-forge -c bioconda snakemake`
+conda install -c conda-forge -c bioconda snakemake
 ````
 
 ```bash
@@ -55,7 +55,7 @@ conda activate snakemake
 ```
 
 ```bash
-conda install -c conda-forge -c bioconda kraken2 bracken pandas`
+conda install -c conda-forge -c bioconda kraken2 bracken pandas
 ```
 
 

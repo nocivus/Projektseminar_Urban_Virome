@@ -5,8 +5,18 @@ services:
     command: snakemake --cores 10 report.txt
     volumes:
       - type: bind
+        read_only: true
         source: ./database
         target: /snakemake/database
       - type: bind
+        source: ./cities
+        target: /snakemake/cities
+  data-analysis:
+    image: data-analysis
+    build:
+      dockerfile: analysis.Dockerfile
+    volumes:
+      - type: bind
+        read_only: true
         source: ./cities
         target: /snakemake/cities

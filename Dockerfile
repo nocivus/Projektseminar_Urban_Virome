@@ -6,8 +6,7 @@ WORKDIR /snakemake
 # Install required system dependencies
 RUN apt-get update && apt-get install -y \
     curl \
-    wget \
-    git 
+    wget
 
 ENV CONDA_PLUGINS_AUTO_ACCEPT_TOS=true
 
